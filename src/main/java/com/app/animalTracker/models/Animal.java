@@ -3,7 +3,7 @@ package com.app.animalTracker.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
+
 
 @Data
 @Entity
