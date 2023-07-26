@@ -1,0 +1,50 @@
+-- Database: wildlife_tracker
+
+-- DROP DATABASE IF EXISTS wildlife_tracker;
+
+CREATE DATABASE wildlife_tracker
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+
+-- Table: public.animals
+
+-- DROP TABLE IF EXISTS public.animals;
+
+CREATE TABLE IF NOT EXISTS public.animals
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character(200) COLLATE pg_catalog."default",
+    age character(200) COLLATE pg_catalog."default",
+    health character(200) COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.animals
+    OWNER to postgres;
+
+
+
+-- Table: public.sightings
+
+-- DROP TABLE IF EXISTS public.sightings;
+
+CREATE TABLE IF NOT EXISTS public.sightings
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character(100) COLLATE pg_catalog."default",
+    location character(100) COLLATE pg_catalog."default",
+    ranger character(100) COLLATE pg_catalog."default"
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.sightings
+    OWNER to postgres;

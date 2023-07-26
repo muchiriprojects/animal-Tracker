@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sightings</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="/" class="nav-link">Animals</a></li>
+            <li class="nav-item"><a href="/sightings" class="nav-link active" aria-current="page">Sightings</a></li>
+        </ul>
+    </header>
+
+    <div class="alert alert-success" role="alert" th:text="${message}"></div>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <h2 class="pb-2 border-bottom">Add New Sighting</h2>
+
+            <form action="/sightings" method="post">
+                <div class="form-group">
+                    <label>Animal Name</label>
+                    <select name="name" class="form-control" required>
+                        <option>select animal</option>
+                        <option th:each="animal : ${animals}" th:value="${animal.name}" th:text="${animal.name}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" class="form-control" name="location" placeholder="location" required>
+<!--                    <select name="location" class="form-control">-->
+<!--                        <option value="zone A">Zone A</option>-->
+<!--                        <option value="near the river">Near the river</option>-->
+<!--                        <option value="NE quadrant">NE quadrant</option>-->
+<!--                    </select>-->
+                </div>
+
+
+                <div class="form-group">
+                    <label>Ranger Name</label>
+                    <input type="text" class="form-control" name="ranger" placeholder="ranger name" required>
+                </div>
+
+                <br>
+                <button type="submit" class="btn btn-primary">Add Sighting</button>
+            </form>
+        </div>
+
+        <div class="col-md-8">
+            <h2 class="pb-2 border-bottom">Added Sightings</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Animal</th>
+                    <th>Location</th>
+                    <th>ranger name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each = "sighting: ${sightings}">
+                        <td th:text="${sighting.id}"></td>
+                        <td th:text="${sighting.name}"></td>
+                        <td th:text="${sighting.location}"></td>
+                        <td th:text="${sighting.ranger}"></td>
+                        <td>
+                            <a th:href="@{/sightings/delete/{id}(id=${sighting.id})}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
