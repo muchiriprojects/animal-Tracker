@@ -1,7 +1,5 @@
 package com.app.animalTracker.models;
 
-import jakarta.persistence.*;
-import lombok.Data;
 
 @Data
 @Entity
